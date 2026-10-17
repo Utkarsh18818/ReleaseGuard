@@ -6,12 +6,29 @@
 <link rel="icon" type="image/svg+xml" href="/assets/icons/shield-check.svg">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/product-tour.css">
 <script src="/assets/app.js" type="module"></script>
+<script src="/assets/product-tour.js" type="module"></script>
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to release review</a>
+<body class="intro-active">
+<a class="skip-link" href="#introContent">Skip to content</a>
+
+<section class="intro" id="intro" aria-label="ReleaseGuard product introduction">
+  <header class="intro-nav"><a class="intro-brand" href="#intro" aria-label="ReleaseGuard introduction"><i class="icon" data-icon="shield-check"></i><span>ReleaseGuard</span></a><nav aria-label="Product navigation"><a href="#introPrinciples">The approach</a><button data-watch-demo>Recorded demo</button><button class="intro-pill" data-open-workspace>Open workspace</button></nav></header>
+  <main class="intro-main" id="introContent" tabindex="-1">
+    <h1 class="intro-headline"><span>EVERY RELEASE</span><span>HAS A HISTORY.</span></h1>
+    <div class="intro-stage">
+      <div class="intro-message"><p>Your agent should <br>remember it.</p><p>Follow connected evidence before making the next decision.</p><button class="intro-pill" data-open-workspace>Open workspace<i class="icon" data-icon="arrow-up-right"></i></button></div>
+      <figure class="intro-film"><video id="productTour" muted loop playsinline preload="none" poster="/demo-media/demo-poster.jpg" aria-label="Recorded ReleaseGuard product tour with synthetic data. This is not the current release state."><source data-src="/demo-media/demo-preview.mp4" type="video/mp4"></video><figcaption><span>RECORDED PRODUCT · SYNTHETIC DATA</span><button id="toggleTour" aria-label="Play product preview" aria-controls="productTour"><i class="icon" data-icon="play"></i><span>Play</span></button></figcaption><button class="intro-watch" id="watchDemo"><span class="intro-play"><i class="icon" data-icon="play"></i></span><span>Watch 2:39 demo</span></button></figure>
+    </div>
+    <div class="intro-principles" id="introPrinciples"><span>FalkorDB context</span><span>Persistent memory</span><span>Evidence-gated actions</span><small>Recorded footage. Synthetic company data.</small></div>
+    <section class="intro-approach" aria-labelledby="approachTitle"><p class="intro-eyebrow">THE APPROACH</p><h2 id="approachTitle">A decision is only as strong<br>as the evidence behind it.</h2><div><article><span>01 / CONNECT</span><h3>Follow the dependency.</h3><p>Trace the release through connected services, incidents and ownership in FalkorDB.</p></article><article><span>02 / REMEMBER</span><h3>Learn from the last attempt.</h3><p>Retrieve failed fixes and their recorded outcomes before proposing the next step.</p></article><article><span>03 / VERIFY</span><h3>Make the action accountable.</h3><p>A separate verifier and deterministic evidence checks gate the release decision and blocker task.</p></article></div><button class="intro-pill" data-open-workspace>Explore the working demo<i class="icon" data-icon="arrow-up-right"></i></button></section>
+    <footer class="intro-footer"><span>ReleaseGuard · Context that changes the next decision.</span><span>Synthetic company. Real graph queries.</span></footer>
+  </main>
+</section>
 <aside class="sidebar" id="sidebar" aria-label="Workspace navigation">
   <a class="brand" href="/" aria-label="ReleaseGuard home"><span class="brand-symbol"><i class="icon" data-icon="shield-check"></i></span><span>ReleaseGuard<span class="brand-dot">.</span></span></a>
+  <button class="nav-item product-overview" id="showIntro"><i class="icon" data-icon="arrow-up-right"></i>Product overview</button>
   <div class="workspace"><span class="workspace-avatar">N</span><div><strong>Northstar Shop</strong><small>Demo workspace</small></div><span class="tiny-tag">DEMO</span></div>
   <p class="nav-label">WORKSPACE</p>
   <nav>
@@ -26,6 +43,7 @@
   <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-menu" id="mobileMenu" aria-label="Open navigation" aria-expanded="false"><i class="icon" data-icon="menu"></i></button><span>Workspace</span><i class="icon" data-icon="chevron-right"></i><strong>Release review</strong></div><span class="sample-label"><span class="live-dot"></span>Synthetic data · no production access</span></header>
   <main id="main" tabindex="-1">
     <div class="page-heading"><div><p class="eyebrow">RELEASE CONFIDENCE, WITH EVIDENCE</p><h1>Can this release move forward?</h1><p class="page-description">ReleaseGuard checks connected services, incidents, and test evidence, then shows what needs attention.</p></div><button class="button subtle" id="quickHelp"><i class="icon" data-icon="book-open"></i>Quick guide</button></div>
+
     <section class="release-bar" aria-label="Select release"><div class="release-selection"><span class="release-symbol"><i class="icon" data-icon="git-branch"></i></span><div><label for="release">RELEASE TO REVIEW</label><select id="release"><option value="checkout-v2.4">Checkout v2.4</option></select></div><span class="neutral-pill">Recorded evidence</span></div><div class="release-controls"><span id="reviewTime" class="muted small">Loading latest review…</span><button class="button primary" id="review"><i class="icon" data-icon="play"></i><span>Review release</span></button></div></section>
     <div id="publicDemo" class="notice" hidden>Shared live demo · fictional company data. Evidence and saved reviews are public; data editing is disabled. AI reviews are shared for 10 minutes and limited to 12 per UTC day.</div>
     <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>

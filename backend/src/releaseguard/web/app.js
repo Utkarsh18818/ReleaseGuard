@@ -50,6 +50,7 @@ function notice(message, error = false) {
   $('notice').className = `notice${error ? ' error' : ''}`;
 }
 function openDialog(name, eyebrow = 'RELEASEGUARD') {
+  $('dialog').classList.remove('video-dialog');
   dialogReturnFocus = document.activeElement;
   $('dialogTitle').textContent = name;
   $('dialogEyebrow').textContent = eyebrow;
@@ -321,7 +322,8 @@ function render() {
   const connected = !state.offline && state.health?.graph === 'reachable';
   $('connection').className = `connection${connected ? '' : ' offline'}`;
   $('connection').lastElementChild.textContent = connected ? `FalkorDB ${state.health.database_target === 'cloud' ? 'Cloud' : 'Local'} · connected` : 'Evidence connection unavailable';
-  $('review').disabled = state.busy || active(state.job);
+  $('review').disabled = state.busy || active(state.job) || state.health?.visual_preview;
+  $('review').title = state.health?.visual_preview ? 'Read-only local design preview. The deployed app remains separate.' : '';
   $('review').querySelector('span').textContent = active(state.job) ? 'Review running' : state.busy ? 'Saving request…' : 'Review release';
 }
 async function refresh(includeHealth = false) {
@@ -398,6 +400,13 @@ async function initialize() {
     await refresh(true);
   } catch (error) { state.offline = true; render(); notice(`Could not load release evidence. ${error.message}`, true); }
 }
-initialize();
-setInterval(() => { if (!state.busy && !document.hidden) refresh(); }, 4000);
+let workspaceStarted = false;
+function startWorkspace() {
+  if (workspaceStarted) return;
+  workspaceStarted = true;
+  initialize();
+}
+document.addEventListener('releaseguard:workspace', startWorkspace);
+if (!document.body.classList.contains('intro-active')) startWorkspace();
+setInterval(() => { if (workspaceStarted && !document.body.classList.contains('intro-active') && !state.busy && !document.hidden) refresh(); }, 4000);
 setInterval(() => { if (state.report?.expires_at && Date.now() >= state.report.expires_at * 1000 && state.report.effective_status !== 'Needs reassessment') { state.report = { ...state.report, effective_status: 'Needs reassessment', freshness_reason: 'Verification evidence expired' }; render(); } }, 1000);

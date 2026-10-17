@@ -61,6 +61,17 @@ def create_app(settings: Settings | None = None):
     def index():
         return FileResponse(Path(__file__).parent / "web" / "index.html")
 
+    @app.get("/demo-media/{filename}")
+    def demo_media(filename: str):
+        allowed = {
+            "demo-preview.mp4": "video/mp4", "demo-poster.jpg": "image/jpeg",
+            "ReleaseGuard-demo.mp4": "video/mp4", "captions.vtt": "text/vtt",
+        }
+        path = ROOT / "demo" / filename
+        if filename not in allowed or not path.is_file():
+            raise HTTPException(404, "Unknown demo media")
+        return FileResponse(path, media_type=allowed[filename])
+
     @app.get("/api/health")
     def health():
         store.client.list_graphs()

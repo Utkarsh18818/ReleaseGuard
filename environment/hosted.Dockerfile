@@ -5,6 +5,7 @@ COPY requirements-lock.txt pyproject.toml ./
 RUN pip install --no-cache-dir -r requirements-lock.txt
 COPY backend ./backend
 COPY fixtures ./fixtures
+COPY demo ./demo
 COPY environment/hosted.py ./environment/hosted.py
 RUN pip install --no-cache-dir --no-deps . && useradd --create-home app && mkdir -p /app/.local/locks && chown -R app:app /app
 USER app

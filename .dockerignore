@@ -6,6 +6,11 @@
 !backend/src/**
 !fixtures/
 !fixtures/northstar.json
+!demo/
+!demo/ReleaseGuard-demo.mp4
+!demo/demo-preview.mp4
+!demo/demo-poster.jpg
+!demo/captions.vtt
 !environment/
 !environment/hosted.Dockerfile
 !environment/hosted.py

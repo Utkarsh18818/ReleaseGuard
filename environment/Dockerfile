@@ -4,5 +4,6 @@ COPY requirements-lock.txt pyproject.toml ./
 RUN pip install --no-cache-dir -r requirements-lock.txt
 COPY backend ./backend
 COPY fixtures ./fixtures
+COPY demo ./demo
 RUN pip install --no-cache-dir --no-deps .
 ENV PYTHONUNBUFFERED=1 PYTHONPATH=/app/backend/src

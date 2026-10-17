@@ -19,7 +19,7 @@ releaseguard = "releaseguard.cli:main"
 where = ["backend/src"]
 
 [tool.setuptools.package-data]
-releaseguard = ["web/*.html", "web/*.css", "web/*.js", "web/icons/*", "web/fonts/*"]
+releaseguard = ["web/*.html", "web/*.css", "web/*.js", "web/icons/*", "web/fonts/*", "web/images/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
