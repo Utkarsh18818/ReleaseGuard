@@ -4,7 +4,7 @@
 
 ReleaseGuard helps an engineering lead trace release risks across service dependencies, inspect sources and historical failed attempts, assign a blocker to the owning team, and detect when earlier recommendations become stale.
 
-Open [the local app](http://127.0.0.1:8000), choose **Review release**, then inspect **Service map**, **Blockers** and **Past fixes**. **Quick guide** explains the workflow; **Technical details** contains calls and timings. [Submission copy, demo script and judge questions](docs/Submission-Readiness.md), [UI review and evidence](docs/UI-Redesign-Review.md).
+Open [the local app](http://127.0.0.1:8000), choose **Open workspace**, then **Review release**. Inspect **Service map**, **Blockers** and **Past fixes**. **How ReleaseGuard works** explains the workflow; **Technical details** contains calls and timings. The introduction includes a labeled recorded demo with captions. [Submission copy, demo script and judge questions](docs/Submission-Readiness.md), [UI review and evidence](docs/UI-Redesign-Review.md).
 
 Watch the [YouTube demonstration](https://youtu.be/qnejDVhVe-E), or the [included narrated MP4](demo/ReleaseGuard-demo.mp4), with [captions](demo/captions.srt) and [transcript/edit disclosures](demo/README.md). It shows real recorded execution using synthetic company data, with separate takes and shortened waiting time explicitly labeled.
 

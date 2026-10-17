@@ -2,7 +2,15 @@
 
 **Verified live URL: https://releaseguard-7hx8.onrender.com/**
 
-This is a bounded, shared synthetic demo, not a production or multi-tenant service. Render reported successful deployment of commit `0393ae3e8c3f183db66f060463061e47e01ea149`. Public UI and health checks confirmed the actual FalkorDB Cloud connection, connected evidence, saved decision and Money-owned task.
+This is a bounded, shared synthetic demo, not a production or multi-tenant service. Render reported successful deployment of commit `e2e1001c4f5345210e786de669ce256946770e45` on October 18. Public UI and health checks confirmed the actual FalkorDB Cloud connection, connected evidence, saved decision and Money-owned task.
+
+## Introduction rollout — October 18
+
+Manual deploy `dep-db9ui9e1egvs738m9t50` succeeded at 03:02 AM IST. The approved third visual direction is live: a responsive product introduction, muted recorded preview, captioned full demo dialog and an Open workspace entry into the existing release review. The demo footage is explicitly historical and synthetic.
+
+Public HTTP verification passed for eight static/media routes, including HTTP 206 byte ranges on both MP4 files. Cloud health was reachable, the current graph-backed assessment was Blocked, and public seed mutation returned HTTP 403. Browser verification confirmed the introduction, actual full-video playback (159.25 seconds), English track, dialog close/focus return, and workspace loading with three connected services, five sources, two historical attempts and the Money-owned blocker. This revision starts its own synthetic graph; no new native Gemini investigation was run during this UI rollout. The October 17 native execution below remains evidence of that earlier revision.
+
+The focused media route test passed, Ruff and diff checks passed, and the local responsive/accessibility checks are recorded in `design-qa.md`. No latency improvement is claimed. Private deployment checks and screenshot are retained in `.local/submission/intro-production-checks.json` and `.local/submission/intro-production.png`.
 
 ## Runtime
 
