@@ -22,3 +22,6 @@ outputs/submission/*.webm
 outputs/submission/*.mp4
 outputs/submission/*.zip
 outputs/submission/video-qa-*.png
+outputs/submission/captions.srt
+outputs/submission/narration.txt
+outputs/submission/video-manifest.json
