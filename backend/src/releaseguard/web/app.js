@@ -296,7 +296,7 @@ function renderActivity() {
     note.append(element('p', '', 'A separate verifier checked the findings. Release rules, not model prose, determined the final verdict.'));
   } else if (run?.actions_withheld) note.append(element('p', '', 'Agent actions were withheld. Any earlier release decision is a separate recorded result.'));
   const retry = !running && run?.state === 'incomplete' && run.proposal && run.model_calls < 5 && run.request_key;
-  $('retry').hidden = !retry;
+  $('retry').hidden = !retry || state.health?.public_demo;
   renderTechnical();
 }
 function renderTechnical() {
@@ -311,6 +311,7 @@ function renderTechnical() {
 }
 
 function render() {
+  $('publicDemo').hidden = !state.health?.public_demo;
   renderDecision();
   const data = state.report;
   if (changed('evidence', data && [data.id, data.current_revision, data.effective_status, data.paths, data.blockers, data.missing_checks, data.sources, data.memory])) renderEvidence();

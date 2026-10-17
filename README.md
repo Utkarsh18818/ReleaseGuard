@@ -12,6 +12,8 @@ Watch the [YouTube demonstration](https://youtu.be/qnejDVhVe-E), or the [include
 
 ## Recommended queued runtime
 
+For the hosted shared-demo configuration, see [public deployment](docs/Public-Deployment.md). It includes a Docker image, isolated synthetic graph, disabled public editing and a graph-persisted AI review limit. A public URL will be added once the actual hosting deployment is verified.
+
 Use the [durable investigation setup](docs/Durable-Investigations.md) for the API, Linux RQ worker, dispatcher and password-protected queue. Investigations return HTTP 202 and continue after page reload; progress and findings remain in FalkorDB. The same guide documents the tested recovery boundaries and measured results. Stop standalone API/writer processes before starting this runtime.
 
 ## Standalone core development

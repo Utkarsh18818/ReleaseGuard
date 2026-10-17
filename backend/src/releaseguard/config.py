@@ -39,6 +39,7 @@ class Settings:
     queue_host: str = "127.0.0.1"
     queue_port: int = 6381
     queue_password: str = field(default="", repr=False)
+    public_demo: bool = False
 
     @classmethod
     def load(cls):
@@ -71,6 +72,7 @@ class Settings:
             queue_host=get("QUEUE_HOST", "127.0.0.1"),
             queue_port=int(get("QUEUE_PORT", "6381")),
             queue_password=get("QUEUE_PASSWORD"),
+            public_demo=get("RELEASEGUARD_PUBLIC_DEMO", "0") == "1",
             demo_enabled=os.environ.get("RELEASEGUARD_DEMO", "0") == "1",
             gemini_api_key=os.environ.get("GEMINI_API_KEY", values.get("GEMINI_API_KEY", "")),
             gemini_model=os.environ.get(

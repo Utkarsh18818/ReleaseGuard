@@ -5,7 +5,8 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 target = root / ".local" / "build-context"
 target.mkdir(parents=True, exist_ok=True)
-files = [root / "pyproject.toml", root / "requirements-lock.txt", root / "environment" / "Dockerfile"]
+files = [root / "pyproject.toml", root / "requirements-lock.txt"]
+files.extend(root / "environment" / name for name in ("Dockerfile", "hosted.Dockerfile", "hosted.py"))
 for directory in (root / "backend", root / "fixtures"):
     files.extend(p for p in directory.rglob("*") if p.is_file() and
                  (p.suffix in {".py", ".html", ".json", ".css", ".js", ".svg", ".woff2"} or p.name == "LICENSE"))

@@ -14,6 +14,7 @@ from releaseguard.application.ingestion import load_dataset, seed
 from releaseguard.application.investigation import Investigator
 from releaseguard.application.jobs import InvestigationJobs
 from releaseguard.application.mutations import apply_event
+from releaseguard.application.public_demo import PublicReviewLimit, submit_public_review
 from releaseguard.config import ROOT, Settings
 from releaseguard.domain.models import AssessmentRequest, DemoEvent
 
@@ -25,6 +26,21 @@ def create_app(settings: Settings | None = None):
     app = FastAPI(title="ReleaseGuard", version="0.1.0")
     app.mount("/assets", StaticFiles(directory=Path(__file__).parent / "web"), name="assets")
     app.state.store = store
+
+    @app.exception_handler(PublicReviewLimit)
+    def public_limit(request, exc):
+        return JSONResponse(status_code=429, content={"detail": str(exc)})
+
+    @app.middleware("http")
+    async def public_boundary(request, call_next):
+        if settings.public_demo and request.method not in {"GET", "HEAD"}:
+            allowed = "/api/releases/checkout-v2.4/agent-investigations"
+            if request.method != "POST" or request.url.path != allowed:
+                return JSONResponse(status_code=403, content={"detail": "Editing is disabled in the shared public demo"})
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Referrer-Policy"] = "same-origin"
+        return response
 
     @app.exception_handler(RedisError)
     def graph_error(request, exc):
@@ -55,7 +71,8 @@ def create_app(settings: Settings | None = None):
             "llm": "Gemini native graph tools available"
             if settings.gemini_api_key
             else "not configured",
-            "demo_enabled": settings.demo_enabled,
+            "demo_enabled": settings.demo_enabled and not settings.public_demo,
+            "public_demo": settings.public_demo,
         }
 
     @app.get("/api/releases")
@@ -72,9 +89,10 @@ def create_app(settings: Settings | None = None):
 
     @app.post("/api/releases/{release}/agent-investigations", status_code=202)
     def agent_investigate(release: str, body: AssessmentRequest):
-        return InvestigationJobs(GraphStore(settings), DeliveryQueue(settings)).submit(
-            release, body.request_key
-        )
+        jobs = InvestigationJobs(GraphStore(settings), DeliveryQueue(settings))
+        if settings.public_demo:
+            return submit_public_review(jobs, release)
+        return jobs.submit(release, body.request_key)
 
     @app.get("/api/releases/{release}/agent-investigations/latest")
     def agent_latest(release: str):
