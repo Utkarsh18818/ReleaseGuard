@@ -8,11 +8,13 @@ Open [the local app](http://127.0.0.1:8000), choose **Review release**, then ins
 
 Watch the [YouTube demonstration](https://youtu.be/qnejDVhVe-E), or the [included narrated MP4](demo/ReleaseGuard-demo.mp4), with [captions](demo/captions.srt) and [transcript/edit disclosures](demo/README.md). It shows real recorded execution using synthetic company data, with separate takes and shortened waiting time explicitly labeled.
 
+**[Open the live shared demo](https://releaseguard-7hx8.onrender.com/).** It uses a separate synthetic FalkorDB Cloud graph and Gemini 3.7 Flash, with public editing disabled and shared bounded AI reviews. A real hosted review completed Blocked with four model calls, six tools and an accepted verifier result. Render Free may take about a minute to wake; provider free quota also limits new reviews. See [deployment evidence and limits](docs/Public-Deployment.md).
+
 ![Release review interface](outputs/ui-review/03-redesign-desktop-viewport.png)
 
 ## Recommended queued runtime
 
-For the hosted shared-demo configuration, see [public deployment](docs/Public-Deployment.md). It includes a Docker image, isolated synthetic graph, disabled public editing and a graph-persisted AI review limit. A public URL will be added once the actual hosting deployment is verified.
+For the hosted shared-demo configuration, see [public deployment](docs/Public-Deployment.md). It includes a Docker image, isolated synthetic graph, disabled public editing and a graph-persisted AI review limit.
 
 Use the [durable investigation setup](docs/Durable-Investigations.md) for the API, Linux RQ worker, dispatcher and password-protected queue. Investigations return HTTP 202 and continue after page reload; progress and findings remain in FalkorDB. The same guide documents the tested recovery boundaries and measured results. Stop standalone API/writer processes before starting this runtime.
 
