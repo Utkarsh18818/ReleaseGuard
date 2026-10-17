@@ -1,0 +1,161 @@
+{
+  "id": "41bf4c3c7390ba3a8d1054d7df8a50557b9140f530576bc8664165cc2901c3c5",
+  "release_id": "checkout-v2.4",
+  "verdict": "Blocked",
+  "mode": "deterministic-core",
+  "agent_run": "not configured",
+  "synthetic": true,
+  "generation": "0c108283-b219-49d5-9ba0-a0da4227adc8",
+  "revision": 6,
+  "policy_version": "release-policy-v1",
+  "assessed_at": 1792007813,
+  "task_ids": [
+    "blocker-1d675358fbc891a17013b12cf4eb94107c22b2583e03db8716ff1dec182317a9"
+  ],
+  "paths": [
+    {
+      "service_id": "checkout",
+      "path": [
+        "checkout"
+      ],
+      "fact_ids": [],
+      "fact_versions": [],
+      "source_ids": [
+        "release-brief"
+      ]
+    },
+    {
+      "service_id": "payments",
+      "path": [
+        "checkout",
+        "payments"
+      ],
+      "fact_ids": [
+        "dep-checkout-payments"
+      ],
+      "fact_versions": [
+        1
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog"
+      ]
+    },
+    {
+      "service_id": "ledger",
+      "path": [
+        "checkout",
+        "payments",
+        "ledger"
+      ],
+      "fact_ids": [
+        "dep-checkout-payments",
+        "dep-payments-ledger"
+      ],
+      "fact_versions": [
+        1,
+        1
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "incident_id": "inc-13",
+      "summary": "New synthetic downstream incident",
+      "service_id": "ledger",
+      "path": [
+        "checkout",
+        "payments",
+        "ledger",
+        "inc-13"
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog",
+        "source-event-313c27f3f9bf54b5c233cf525773b94b6264da08594a4223ebd28a6866f0733f"
+      ],
+      "owner": {
+        "id": "money",
+        "name": "Money",
+        "source_id": "catalog"
+      },
+      "supported": true
+    }
+  ],
+  "missing_checks": [],
+  "memory": [
+    {
+      "incident_id": "hist-07",
+      "service_id": "payments",
+      "attempt_id": "retry-increase",
+      "technique": "Increase retries",
+      "observed_outcome": "Overload worsened",
+      "source_id": "history-record",
+      "interpretation": "Historical outcome; present applicability requires verification"
+    },
+    {
+      "incident_id": "hist-07",
+      "service_id": "payments",
+      "attempt_id": "timeout-fix",
+      "technique": "Timeout/circuit-breaker procedure",
+      "observed_outcome": "Recovery observed under historical conditions",
+      "source_id": "history-record",
+      "interpretation": "Historical outcome; present applicability requires verification"
+    }
+  ],
+  "sources": {
+    "catalog": {
+      "text": "Synthetic catalog: Checkout depends on Payments; Payments on Ledger. Web and Mobile consume Checkout. Commerce owns Checkout/Web/Mobile; Money owns Payments/Ledger; Platform owns Notifications.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "655770d64dd18eb22bbd767dce39ff3a4d2701960d27ab5da190cb6b93e9e562"
+    },
+    "release-brief": {
+      "text": "Synthetic checkout-v2.4 changes retry policy. Requires current integration verification and no relevant open blocking incident.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "d5b26430c2b7987268dfd07bf1452dee1e9064c4431dd699e08422e9bebbaaf5"
+    },
+    "history-record": {
+      "text": "Synthetic HIST-07: increasing Payments retries worsened overload. A timeout/circuit-breaker procedure later accompanied recovery. These observations are not proof of causality or a guaranteed new fix.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "5ba0fcaec5b8ab96cd743a76c677884e0c136bc4c9d39cecb271c485bd4be94c"
+    },
+    "check-record": {
+      "text": "Synthetic integration verification for checkout-v2.4 passed. Its deliberately future expiry is fixture data, not a real CI test.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "f671f1402913e84de5c60ae855210a283e636266dd1b2b09711c3d2342ca1b5b"
+    },
+    "source-event-313c27f3f9bf54b5c233cf525773b94b6264da08594a4223ebd28a6866f0733f": {
+      "text": "Synthetic demo event: {\"entity_id\": \"inc-13\", \"kind\": \"new_incident\", \"request_key\": \"ebcd9cb1-dd21-4ebe-8f4e-e437518d2ed7\", \"value\": \"ledger\"}",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "59239c7c0d0501faf300adce6ce3efccb03e2948845b9ee98c12a9f0982bf9a1"
+    }
+  },
+  "expires_at": 1893456000,
+  "timing": {
+    "graph_client_ms": 28.69130000021869,
+    "graph_server_ms": 0.5306,
+    "query_count": 11,
+    "model_ms": null,
+    "scope": "investigation and actions, excluding assessment persistence/status read"
+  },
+  "effective_status": "Blocked",
+  "freshness_reason": null,
+  "current_revision": 6,
+  "checked_at": 1792007813,
+  "request_timing": {
+    "wall_ms": 34.42820000009306,
+    "graph_client_ms": 33.92710000025545,
+    "graph_server_ms": 0.8089,
+    "other_application_ms": 0.5010999998376064,
+    "model_ms": null
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "releaseguard-ui-checks",
+  "private": true,
+  "scripts": {"test": "node review.spec.cjs", "accessibility": "node accessibility.cjs"},
+  "devDependencies": {"playwright": "1.64.1", "@axe-core/playwright": "4.14.0"}
+}

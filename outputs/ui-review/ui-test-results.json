@@ -1,0 +1,52 @@
+{
+  "base": "http://127.0.0.1:8000",
+  "results": [
+    {
+      "name": "Live release decision appears before technical activity",
+      "status": "passed"
+    },
+    {
+      "name": "Real dependency selection and source preview survive polling",
+      "status": "passed"
+    },
+    {
+      "name": "Evidence tabs support keyboard navigation",
+      "status": "passed"
+    },
+    {
+      "name": "Technical details and focus stay open across refresh",
+      "status": "passed"
+    },
+    {
+      "name": "Quick guide explains the product and its limits",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile layout contains its graph and navigation",
+      "status": "passed"
+    },
+    {
+      "name": "Recorded UI-state fixture: Blocked",
+      "status": "passed"
+    },
+    {
+      "name": "Recorded UI-state fixture: Review outdated",
+      "status": "passed"
+    },
+    {
+      "name": "Recorded UI-state fixture: Needs evidence",
+      "status": "passed"
+    },
+    {
+      "name": "UI queue state keeps the saved decision separate from an unfinished review",
+      "status": "passed"
+    },
+    {
+      "name": "Dependency failure withholds a current release presentation",
+      "status": "passed"
+    }
+  ],
+  "liveReads": true,
+  "recordedStateTests": true,
+  "note": "Route fixtures test presentation only. They do not establish backend/model outcomes."
+}

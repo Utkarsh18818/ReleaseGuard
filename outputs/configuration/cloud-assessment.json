@@ -1,0 +1,160 @@
+{
+  "id": "7ad10b77b677bcc36ead0e569bff92a6cb815c3f828449e0489e720b2c956891",
+  "release_id": "checkout-v2.4",
+  "verdict": "Blocked",
+  "mode": "deterministic-core",
+  "agent_run": "not configured",
+  "synthetic": true,
+  "generation": "b615cd8f-3c09-4b77-b868-e070b33a2bb0",
+  "revision": 2,
+  "policy_version": "release-policy-v1",
+  "assessed_at": 1792010870,
+  "task_ids": [
+    "blocker-af48e17109c4c62fb80f5467a40d536675f4d17b52b9c1e5515e17daa7600afd"
+  ],
+  "paths": [
+    {
+      "service_id": "checkout",
+      "path": [
+        "checkout"
+      ],
+      "fact_ids": [],
+      "fact_versions": [],
+      "source_ids": [
+        "release-brief"
+      ]
+    },
+    {
+      "service_id": "payments",
+      "path": [
+        "checkout",
+        "payments"
+      ],
+      "fact_ids": [
+        "dep-checkout-payments"
+      ],
+      "fact_versions": [
+        1
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog"
+      ]
+    },
+    {
+      "service_id": "ledger",
+      "path": [
+        "checkout",
+        "payments",
+        "ledger"
+      ],
+      "fact_ids": [
+        "dep-checkout-payments",
+        "dep-payments-ledger"
+      ],
+      "fact_versions": [
+        1,
+        1
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "incident_id": "inc-12",
+      "summary": "Payments timeout incident",
+      "service_id": "payments",
+      "path": [
+        "checkout",
+        "payments",
+        "inc-12"
+      ],
+      "source_ids": [
+        "release-brief",
+        "catalog",
+        "incident-record"
+      ],
+      "owner": {
+        "id": "money",
+        "name": "Money",
+        "source_id": "catalog"
+      },
+      "supported": true
+    }
+  ],
+  "missing_checks": [],
+  "memory": [
+    {
+      "incident_id": "hist-07",
+      "service_id": "payments",
+      "attempt_id": "retry-increase",
+      "technique": "Increase retries",
+      "observed_outcome": "Overload worsened",
+      "source_id": "history-record",
+      "interpretation": "Historical outcome; present applicability requires verification"
+    },
+    {
+      "incident_id": "hist-07",
+      "service_id": "payments",
+      "attempt_id": "timeout-fix",
+      "technique": "Timeout/circuit-breaker procedure",
+      "observed_outcome": "Recovery observed under historical conditions",
+      "source_id": "history-record",
+      "interpretation": "Historical outcome; present applicability requires verification"
+    }
+  ],
+  "sources": {
+    "catalog": {
+      "text": "Synthetic catalog: Checkout depends on Payments; Payments on Ledger. Web and Mobile consume Checkout. Commerce owns Checkout/Web/Mobile; Money owns Payments/Ledger; Platform owns Notifications.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "655770d64dd18eb22bbd767dce39ff3a4d2701960d27ab5da190cb6b93e9e562"
+    },
+    "release-brief": {
+      "text": "Synthetic checkout-v2.4 changes retry policy. Requires current integration verification and no relevant open blocking incident.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "d5b26430c2b7987268dfd07bf1452dee1e9064c4431dd699e08422e9bebbaaf5"
+    },
+    "incident-record": {
+      "text": "Synthetic INC-12: Payments timeouts, open and designated release-blocking. Notifications has an unrelated open incident.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "6b09e08fabf5ed2aed0272d97f92b3f6fd3c66752c9fa3c81816f8aec82821e4"
+    },
+    "history-record": {
+      "text": "Synthetic HIST-07: increasing Payments retries worsened overload. A timeout/circuit-breaker procedure later accompanied recovery. These observations are not proof of causality or a guaranteed new fix.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "5ba0fcaec5b8ab96cd743a76c677884e0c136bc4c9d39cecb271c485bd4be94c"
+    },
+    "check-record": {
+      "text": "Synthetic integration verification for checkout-v2.4 passed. Its deliberately future expiry is fixture data, not a real CI test.",
+      "synthetic": true,
+      "version": 1,
+      "checksum": "f671f1402913e84de5c60ae855210a283e636266dd1b2b09711c3d2342ca1b5b"
+    }
+  },
+  "expires_at": 1893456000,
+  "timing": {
+    "graph_client_ms": 756.5601999995124,
+    "graph_server_ms": 6.305756,
+    "query_count": 17,
+    "model_ms": null,
+    "scope": "investigation and actions, excluding assessment persistence/status read"
+  },
+  "effective_status": "Blocked",
+  "freshness_reason": null,
+  "current_revision": 2,
+  "checked_at": 1792010870,
+  "request_timing": {
+    "wall_ms": 869.9657999995907,
+    "graph_client_ms": 868.8720000000103,
+    "graph_server_ms": 6.904483,
+    "other_application_ms": 1.0937999995803693,
+    "model_ms": null
+  }
+}

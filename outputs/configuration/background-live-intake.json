@@ -1,0 +1,22 @@
+{
+  "job": {
+    "id": "4db39c17ecb439fcfb2460931131c358c56a9232b2e994261bb9a5ceb76dd114",
+    "release_id": "checkout-v2.4",
+    "request_key": "background-live-1",
+    "resume": false,
+    "state": "queued",
+    "attempts": 0,
+    "dispatches": 1,
+    "created_at": 1792212353.2794425,
+    "events": [
+      {
+        "stage": "queued",
+        "at": 1792212353.2794425
+      }
+    ],
+    "updated_at": 1792212353.2975383,
+    "delivery_id": "4db39c17ecb439fcfb2460931131c358c56a9232b2e994261bb9a5ceb76dd114-0"
+  },
+  "database_target": "local",
+  "submit_wall_ms": 27.98280000001796
+}

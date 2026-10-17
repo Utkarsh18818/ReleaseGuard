@@ -1,0 +1,14 @@
+{
+  "health": {
+    "graph": "reachable",
+    "mode": "deterministic-core",
+    "llm": "Gemini native graph tools available",
+    "demo_enabled": true
+  },
+  "replayed_id": "0ae77f8803037f91a23f146606f6be8eaf32ee64496ba9c78bed20d617153cc3",
+  "state": "completed",
+  "fresh": true,
+  "verdict": "Ready",
+  "model_calls": 4,
+  "unknown_resume_status": 409
+}

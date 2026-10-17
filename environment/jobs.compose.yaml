@@ -1,0 +1,54 @@
+name: releaseguard-jobs
+services:
+  queue:
+    image: redis@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+    command: ["sh", "-c", 'exec redis-server --appendonly yes --appendfsync everysec --maxmemory 128mb --maxmemory-policy noeviction --requirepass "$$QUEUE_PASSWORD"']
+    environment:
+      QUEUE_PASSWORD: ${QUEUE_PASSWORD:?Set QUEUE_PASSWORD in .local/.env}
+      REDISCLI_AUTH: ${QUEUE_PASSWORD}
+    ports: ["127.0.0.1:6381:6379"]
+    volumes: ["../.local/queue-data:/data"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  api:
+    build:
+      context: ../.local/build-context
+      dockerfile: environment/Dockerfile
+    image: releaseguard-app:local
+    env_file: [../.local/.env, ../.env]
+    environment:
+      QUEUE_HOST: queue
+      QUEUE_PORT: 6379
+      RELEASEGUARD_DEMO: "1"
+    command: ["python", "-m", "uvicorn", "releaseguard.api:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["../.local/locks:/app/.local/locks"]
+    restart: unless-stopped
+    depends_on:
+      queue: {condition: service_healthy}
+  worker:
+    image: releaseguard-app:local
+    env_file: [../.local/.env, ../.env]
+    environment:
+      QUEUE_HOST: queue
+      QUEUE_PORT: 6379
+    command: ["python", "-m", "releaseguard.worker"]
+    volumes: ["../.local/locks:/app/.local/locks"]
+    restart: unless-stopped
+    depends_on:
+      queue: {condition: service_healthy}
+  dispatcher:
+    image: releaseguard-app:local
+    env_file: [../.local/.env, ../.env]
+    environment:
+      QUEUE_HOST: queue
+      QUEUE_PORT: 6379
+    command: ["python", "-m", "releaseguard.worker", "--reconcile-only"]
+    volumes: ["../.local/locks:/app/.local/locks"]
+    restart: unless-stopped
+    depends_on:
+      queue: {condition: service_healthy}

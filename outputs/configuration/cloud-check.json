@@ -1,0 +1,8 @@
+{
+  "instance": "instance-6q80dafwe",
+  "transport": "plaintext Redis; credential-free PING returned NOAUTH",
+  "tls_verified": false,
+  "authenticated": true,
+  "graph_count": 0,
+  "elapsed_ms": 490.99
+}

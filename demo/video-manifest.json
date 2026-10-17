@@ -1,0 +1,92 @@
+{
+  "duration_s": 159.17043083900225,
+  "ai_narration": true,
+  "separate_recorded_takes": true,
+  "waiting_time_shortened": true,
+  "scenes": [
+    {
+      "scene": 0,
+      "title": "A release decision you can trace",
+      "duration_s": 7.117959183673469,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 1,
+      "title": "Risk follows the dependency path",
+      "duration_s": 9.012290249433107,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 2,
+      "title": "Synthetic data. Real execution.",
+      "duration_s": 10.59233560090703,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 3,
+      "title": "Inspect the evidence behind a path",
+      "duration_s": 12.306621315192745,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 4,
+      "title": "Remember failed fixes",
+      "duration_s": 12.872063492063493,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 5,
+      "title": "Recorded evidence change \u00b7 separate take",
+      "duration_s": 12.50204081632653,
+      "source": "ReleaseGuard-01-evidence-change-silent.webm"
+    },
+    {
+      "scene": 6,
+      "title": "A saved review continues in the worker",
+      "duration_s": 13.21700680272109,
+      "source": "ReleaseGuard-02-agent-blocker-silent.webm"
+    },
+    {
+      "scene": 7,
+      "title": "Recording disclosure",
+      "duration_s": 7.413151927437641,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 8,
+      "title": "Accepted review \u2192 supported owner task",
+      "duration_s": 13.126848072562359,
+      "source": "ReleaseGuard-02-agent-blocker-silent.webm"
+    },
+    {
+      "scene": 9,
+      "title": "Measured cloud execution \u00b7 one sample",
+      "duration_s": 10.332471655328797,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 10,
+      "title": "Verification and fair comparison",
+      "duration_s": 14.716643990929706,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 11,
+      "title": "Why FalkorDB is essential",
+      "duration_s": 11.647301587301587,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 12,
+      "title": "Boundaries and honest failure handling",
+      "duration_s": 11.762222222222222,
+      "source": "real screenshot / measured result card"
+    },
+    {
+      "scene": 13,
+      "title": "ReleaseGuard \u00b7 connected evidence, accountable decisions",
+      "duration_s": 12.551473922902494,
+      "source": "real screenshot / measured result card"
+    }
+  ]
+}

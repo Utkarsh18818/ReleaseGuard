@@ -1,0 +1,22 @@
+{
+  "status_code": 202,
+  "response_ms": 52.65600000006998,
+  "job": {
+    "id": "0b7c6e2c43deb62e9bc6038d870047d64774c111770bc3115165e43571d2b5d2",
+    "release_id": "checkout-v2.4",
+    "request_key": "main-api-background-20261017",
+    "resume": false,
+    "state": "queued",
+    "attempts": 0,
+    "dispatches": 1,
+    "created_at": 1792212562.161824,
+    "events": [
+      {
+        "stage": "queued",
+        "at": 1792212562.1618242
+      }
+    ],
+    "updated_at": 1792212562.1791759,
+    "delivery_id": "0b7c6e2c43deb62e9bc6038d870047d64774c111770bc3115165e43571d2b5d2-0"
+  }
+}

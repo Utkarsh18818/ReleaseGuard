@@ -1,0 +1,325 @@
+{
+  "dataset": "Northstar Shop \u2014 entirely fictional",
+  "synthetic": true,
+  "nodes_initial": 22,
+  "edges_initial": 18,
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "query": "\nMATCH (:Release {id:$release})-[:HAS_CHANGE]->(:Change)-[:TOUCHES]->(root:Service)\nMATCH p=(root)-[:DEPENDS_ON*0..4]->(s:Service)\nOPTIONAL MATCH (i:Incident)-[:AFFECTED]->(s) WHERE i.status='open' AND i.blocking=true\nRETURN s.id,[n IN nodes(p) | n.id],i.id LIMIT 501\n",
+  "cases": [
+    {
+      "name": "initial Payments risk; unrelated Notifications excluded",
+      "graph": {
+        "paths": {
+          "payments": [
+            "checkout",
+            "payments"
+          ],
+          "checkout": [
+            "checkout"
+          ],
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ]
+        },
+        "blockers": {
+          "inc-12": [
+            "checkout",
+            "payments",
+            "inc-12"
+          ]
+        }
+      },
+      "baseline": {
+        "paths": {
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ],
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ]
+        },
+        "blockers": {
+          "inc-12": [
+            "checkout",
+            "payments",
+            "inc-12"
+          ]
+        }
+      },
+      "equal": true
+    },
+    {
+      "name": "new two-hop Ledger risk",
+      "graph": {
+        "paths": {
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ],
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ]
+        },
+        "blockers": {
+          "inc-13": [
+            "checkout",
+            "payments",
+            "ledger",
+            "inc-13"
+          ]
+        }
+      },
+      "baseline": {
+        "paths": {
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ],
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ]
+        },
+        "blockers": {
+          "inc-13": [
+            "checkout",
+            "payments",
+            "ledger",
+            "inc-13"
+          ]
+        }
+      },
+      "equal": true
+    },
+    {
+      "name": "relationship removed: Ledger incident out of scope",
+      "graph": {
+        "paths": {
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ]
+        },
+        "blockers": {}
+      },
+      "baseline": {
+        "paths": {
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ]
+        },
+        "blockers": {}
+      },
+      "equal": true
+    },
+    {
+      "name": "cycle: finite distinct paths",
+      "graph": {
+        "paths": {
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ],
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ]
+        },
+        "blockers": {
+          "inc-13": [
+            "checkout",
+            "payments",
+            "ledger",
+            "inc-13"
+          ]
+        }
+      },
+      "baseline": {
+        "paths": {
+          "checkout": [
+            "checkout"
+          ],
+          "payments": [
+            "checkout",
+            "payments"
+          ],
+          "ledger": [
+            "checkout",
+            "payments",
+            "ledger"
+          ]
+        },
+        "blockers": {
+          "inc-13": [
+            "checkout",
+            "payments",
+            "ledger",
+            "inc-13"
+          ]
+        }
+      },
+      "equal": true
+    }
+  ],
+  "measurement_scope": "Same-facts dependency paths and active blocking incidents only; excludes ingestion, model, actions, policy and source rendering",
+  "baseline": "Python adjacency BFS, full identical structured facts, equal four-hop limit",
+  "model_api_ms": null,
+  "query_timeout_ms": 2000,
+  "graph_client_and_mapping": {
+    "n": 30,
+    "median_ms": 1.5971999999919717,
+    "p95_ms": 2.2601000000577187
+  },
+  "graph_server_execution": {
+    "n": 30,
+    "median_ms": 0.16405,
+    "p95_ms": 0.2716
+  },
+  "baseline_in_memory": {
+    "n": 30,
+    "median_ms": 0.036649999969995406,
+    "p95_ms": 0.06529999996018887
+  },
+  "warmups": 5,
+  "raw_samples_ms": {
+    "graph_client": [
+      1.5960000000632135,
+      1.6032999999424646,
+      1.594399999930829,
+      1.5834999999242427,
+      6.234100000028775,
+      2.214399999957095,
+      1.7255000000204745,
+      1.599400000031892,
+      1.59839999992073,
+      1.5595000002122106,
+      1.6095999999379274,
+      1.639699999941513,
+      1.5452000000095722,
+      1.5342000001510314,
+      2.166299999998955,
+      1.8096999999670516,
+      1.8109999998614512,
+      1.7063999998754298,
+      1.6734000000724336,
+      1.440900000034162,
+      1.4437999998335727,
+      1.4341999999487598,
+      1.4281000001119537,
+      1.4229000000796077,
+      2.2601000000577187,
+      1.7863999999008229,
+      1.5144999999847641,
+      1.443699999981618,
+      1.441499999828011,
+      1.4584000000468222
+    ],
+    "graph_server": [
+      0.166999,
+      0.1861,
+      0.169299,
+      0.161399,
+      3.594189,
+      0.234999,
+      0.1684,
+      0.162699,
+      0.164699,
+      0.164,
+      0.1641,
+      0.161599,
+      0.1612,
+      0.1573,
+      0.241499,
+      0.174399,
+      0.1984,
+      0.1622,
+      0.172599,
+      0.154799,
+      0.154299,
+      0.163599,
+      0.166099,
+      0.1579,
+      0.2716,
+      0.2263,
+      0.159199,
+      0.156999,
+      0.1575,
+      0.1548
+    ],
+    "baseline": [
+      0.036399999999048305,
+      0.037400000110210385,
+      0.036600000157704926,
+      0.03659999993033125,
+      0.05970000006527698,
+      0.03870000000461005,
+      0.033400000120309414,
+      0.03479999986666371,
+      0.036500000078376615,
+      0.03620000006776536,
+      0.03680000008898787,
+      0.03600000013648241,
+      0.04380000018500141,
+      0.03329999981360743,
+      0.06529999996018887,
+      0.04219999982524314,
+      0.03319999996165279,
+      0.03999999989900971,
+      0.03599999990910874,
+      0.03420000007281487,
+      0.04020000005766633,
+      0.03360000005159236,
+      0.035399999887886224,
+      0.06830000006630144,
+      0.060400000165827805,
+      0.036699999782285886,
+      0.03880000008393836,
+      0.03919999994650425,
+      0.03220000007786439,
+      0.039600000036443816
+    ]
+  },
+  "accuracy_conclusion": "Tie on all four synthetic relationship cases; no accuracy superiority established",
+  "speed_conclusion": "Baseline is simpler and faster on tiny in-memory data; graph contribution is persisted queryable relationships, not proven speedup",
+  "single_core_workflow": {
+    "verdict": "Blocked",
+    "timing": {
+      "wall_ms": 29.955799999925148,
+      "graph_client_ms": 29.17569999999614,
+      "graph_server_ms": 1.390395,
+      "other_application_ms": 0.780099999929007,
+      "model_ms": null
+    },
+    "task_count": 1,
+    "mode": "deterministic-core"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "target": "cloud",
+  "authenticated": true,
+  "project_graph_present": true,
+  "graph_count": 2,
+  "domain_state": {
+    "revision": 3,
+    "generation": "b615cd8f-3c09-4b77-b868-e070b33a2bb0",
+    "dirty": false
+  },
+  "releases": [
+    [
+      "checkout-v2.4"
+    ]
+  ],
+  "elapsed_ms": 690.8783999999741
+}

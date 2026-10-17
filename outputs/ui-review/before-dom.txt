@@ -1,0 +1,104 @@
+ReleaseGuard.
+Northstar Shop · synthetic company
+RELEASE INVESTIGATION
+Follow the evidence.
+Know when the answer changes.
+
+Gemini investigates connected evidence with bounded graph tools. A separate review and deterministic evidence gate control actions. Historical fixes require present validation.
+
+Release 
+Checkout v2.4
+Investigate with Gemini
+Run graph policy only
+Load synthetic company
+
+Background investigation
+No job queued.
+Agent investigation · persisted in FalkorDB
+
+State: completed · current evidence · model calls 4 · tool calls 9
+
+read_source({"source_id":"release-brief"})
+
+read_source({"source_id":"check-record"})
+
+read_source({"source_id":"history-record"})
+
+read_history({"service_id":"checkout"})
+
+read_history({"service_id":"payments"})
+
+read_history({"service_id":"ledger"})
+
+read_source({"source_id":"catalog"})
+
+Separate verifier: accepted · supported
+
+Avoid repeating Increase retries: Overload worsened [history-record]
+
+Review Timeout/circuit-breaker procedure: Recovery observed under historical conditions [history-record]
+
+Next step: review historical procedure
+
+Historical observation; validate applicability before any production change.
+
+Model/API time: 42281 ms. Run 5b172be3ebc1fb94.
+
+CURRENT RECOMMENDATION
+Ready
+
+Stored verdict: Ready · deterministic core
+
+Assessed revision 3 · current 3 · checked 10:36:28
+
+Connected findings
+
+No relevant blocking incidents retrieved.
+
+Dependency evidence
+
+checkout
+
+Inspect retrieved sources
+release-brief
+
+Synthetic checkout-v2.4 changes retry policy. Requires current integration verification and no relevant open blocking incident.
+
+checkout → payments
+
+Inspect retrieved sources
+
+checkout → payments → ledger
+
+Inspect retrieved sources
+What happened before
+Increase retries
+
+Overload worsened
+
+Historical outcome; present applicability requires verification
+
+Inspect retrieved sources
+Timeout/circuit-breaker procedure
+
+Recovery observed under historical conditions
+
+Historical outcome; present applicability requires verification
+
+Inspect retrieved sources
+Accountable actions
+
+Money · resolved
+
+blocker-af48e17109c4c6
+Change the evidence
+
+These controls write explicitly synthetic events. Recommendations must be rechecked afterward.
+
+Resolve Payments incident
+Expire verification
+Add passing verification
+New Ledger incident
+Measured execution
+Graph client: 508.20 ms · server: 2.25 ms · queries: 10. Model: not used in this policy stage. Measurement scope: investigation queries.
+Ready means configured checks passed against the modeled evidence, not a guarantee of deployment safety. Dependency reachability is not proof of an outage. Local demo only.

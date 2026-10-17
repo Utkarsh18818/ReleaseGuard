@@ -1,0 +1,14 @@
+{
+  "health": {
+    "graph": "reachable",
+    "mode": "deterministic-core",
+    "llm": "Gemini configured; agent integration pending",
+    "demo_enabled": true
+  },
+  "verdict": "Blocked",
+  "task_count": 1,
+  "owner": "Money",
+  "seed_replay": {
+    "applied": false
+  }
+}

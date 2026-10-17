@@ -1,0 +1,18 @@
+[
+  {
+    "state": "desktop",
+    "violations": []
+  },
+  {
+    "state": "guide",
+    "violations": []
+  },
+  {
+    "state": "source",
+    "violations": []
+  },
+  {
+    "state": "mobile",
+    "violations": []
+  }
+]

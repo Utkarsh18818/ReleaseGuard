@@ -1,0 +1,33 @@
+{
+  "health": {
+    "graph": "reachable",
+    "database_target": "cloud",
+    "mode": "deterministic-core",
+    "llm": "Gemini native graph tools available",
+    "demo_enabled": true
+  },
+  "status_code": 202,
+  "response_ms": 5057.177699999784,
+  "job": {
+    "id": "c78027741aae926d330e65ae7f06f364b99fc90e93247ed78d2a92eb8560b2d4",
+    "release_id": "checkout-v2.4",
+    "request_key": "cloud-worker-20261017",
+    "resume": false,
+    "state": "running",
+    "attempts": 1,
+    "dispatches": 1,
+    "created_at": 1792212912.7527025,
+    "events": [
+      {
+        "stage": "queued",
+        "at": 1792212912.7527037
+      },
+      {
+        "stage": "running",
+        "at": 1792212917.0850565
+      }
+    ],
+    "updated_at": 1792212917.0850768,
+    "delivery_id": "c78027741aae926d330e65ae7f06f364b99fc90e93247ed78d2a92eb8560b2d4-0"
+  }
+}

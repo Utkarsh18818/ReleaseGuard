@@ -1,0 +1,14 @@
+ReleaseGuard helps an engineering lead answer a practical question: can this release move forward, based on the evidence we have?
+A Checkout change can depend on Payments, which depends on Ledger. An incident in a connected service can block the release even if Checkout itself looks healthy.
+This demonstration uses a fictional company and synthetic incident records. The database queries, Gemini requests, saved reviews, and owner-assigned tasks are real.
+The service map follows relationships returned by FalkorDB. Selecting a service reveals its sources. Source records include their version and checksum, so an explanation can be checked against the evidence.
+Memory also matters. In Past fixes, increasing retries previously worsened overload. A timeout and circuit breaker procedure was associated with recovery, but still needs validation for the current incident.
+Here is a recorded change to the evidence. A new blocking incident is added to Ledger. The previous Ready recommendation immediately becomes Review outdated. The agent cannot keep treating its old answer as current.
+A fresh review runs in a background worker. Gemini chooses bounded source and history tools, saves structured findings, and hands them to a separate verifier. Deterministic evidence and freshness checks gate the final action.
+This section uses separate recorded takes, and waiting time is shortened. It does not imply an uninterrupted live recording.
+The completed review found the path Checkout, Payments, Ledger, and incident thirteen. The release became Blocked, and a task was persisted for Money, the recorded owner. It took four model requests and six tool calls.
+The successful cloud run took about seventy seconds. About fifty seconds were model and API time. These are individual measured samples, not a speedup claim.
+Fifty backend tests and eleven browser checks passed. A fair same-facts adjacency-list baseline agreed with the graph on all four small relationship cases and was faster in memory. We do not claim graph accuracy or speed superiority on this dataset.
+FalkorDB is central to the connected evidence, queries, saved agent handoff, tasks, and freshness checks. If it is unavailable, the application cannot confirm a current release decision.
+ReleaseGuard does not deploy software. It has no authenticated multi-tenant API, high availability, or proven disaster recovery. Provider failures and unsupported findings withhold actions.
+The result is a traceable release investigation: connected evidence, useful memory, an accountable owner, and a recommendation that knows when it is outdated. AI assistance was used for implementation and this narration.

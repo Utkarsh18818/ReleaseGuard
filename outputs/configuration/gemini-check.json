@@ -1,0 +1,38 @@
+{
+  "provider": "Gemini",
+  "key_present": true,
+  "model_list_http_status": 200,
+  "selected_model_available": true,
+  "generation_http_status": 200,
+  "generation_wall_ms": 7217.816400000174,
+  "model": "gemini-3.8-flash",
+  "response_fields": [
+    "created",
+    "id",
+    "model",
+    "object",
+    "service_tier",
+    "status",
+    "steps",
+    "updated",
+    "usage"
+  ],
+  "response_status": "completed",
+  "visible_test_reply": "RELEASEGUARD_OK",
+  "expected_reply_received": true,
+  "token_usage": {
+    "total_tokens": 131,
+    "total_input_tokens": 9,
+    "input_tokens_by_modality": [
+      {
+        "modality": "text",
+        "tokens": 9
+      }
+    ],
+    "total_cached_tokens": 0,
+    "total_output_tokens": 4,
+    "total_tool_use_tokens": 0,
+    "total_thought_tokens": 118
+  },
+  "working": true
+}

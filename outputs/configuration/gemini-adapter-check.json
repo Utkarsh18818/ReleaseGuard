@@ -1,0 +1,11 @@
+{
+  "working": true,
+  "model": "gemini-3.8-flash",
+  "elapsed_ms": 13146.10139999968,
+  "usage": {
+    "total_tokens": 131,
+    "total_input_tokens": 9,
+    "total_output_tokens": 4,
+    "total_thought_tokens": 118
+  }
+}

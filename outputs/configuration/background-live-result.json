@@ -1,0 +1,620 @@
+{
+  "job": {
+    "id": "4db39c17ecb439fcfb2460931131c358c56a9232b2e994261bb9a5ceb76dd114",
+    "release_id": "checkout-v2.4",
+    "request_key": "background-live-1",
+    "resume": false,
+    "state": "completed",
+    "attempts": 1,
+    "dispatches": 1,
+    "created_at": 1792212353.2794425,
+    "events": [
+      {
+        "stage": "queued",
+        "at": 1792212353.2794425
+      },
+      {
+        "stage": "running",
+        "at": 1792212412.9371376
+      },
+      {
+        "stage": "investigating",
+        "at": 1792212412.9643366
+      },
+      {
+        "stage": "awaiting_verifier",
+        "at": 1792212444.8649318
+      },
+      {
+        "stage": "verifying",
+        "at": 1792212444.89545
+      },
+      {
+        "stage": "completed",
+        "at": 1792212465.3150213
+      },
+      {
+        "stage": "completed",
+        "at": 1792212465.3472612
+      }
+    ],
+    "updated_at": 1792212465.3472638,
+    "delivery_id": "4db39c17ecb439fcfb2460931131c358c56a9232b2e994261bb9a5ceb76dd114-0",
+    "agent_run_id": "a36a215a183d2600b10832c2441e0efcccb11e0ceac3dd6387016da44f30d1bf",
+    "model_calls": 4,
+    "tool_calls": 7,
+    "error": null
+  },
+  "run": {
+    "id": "a36a215a183d2600b10832c2441e0efcccb11e0ceac3dd6387016da44f30d1bf",
+    "release_id": "checkout-v2.4",
+    "request_key": "background-live-1",
+    "state": "completed",
+    "generation": "e7c8a0e3-7c3c-4e79-9f07-937e7d2cdf36",
+    "revision": 1,
+    "created_at": 1792212412,
+    "prompt_version": "release-investigator-v1",
+    "evidence": {
+      "paths": [
+        {
+          "service_id": "checkout",
+          "path": [
+            "checkout"
+          ],
+          "fact_ids": [],
+          "fact_versions": [],
+          "source_ids": [
+            "release-brief"
+          ]
+        },
+        {
+          "service_id": "payments",
+          "path": [
+            "checkout",
+            "payments"
+          ],
+          "fact_ids": [
+            "dep-checkout-payments"
+          ],
+          "fact_versions": [
+            1
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog"
+          ]
+        },
+        {
+          "service_id": "ledger",
+          "path": [
+            "checkout",
+            "payments",
+            "ledger"
+          ],
+          "fact_ids": [
+            "dep-checkout-payments",
+            "dep-payments-ledger"
+          ],
+          "fact_versions": [
+            1,
+            1
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog"
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "incident_id": "inc-12",
+          "summary": "Payments timeout incident",
+          "service_id": "payments",
+          "path": [
+            "checkout",
+            "payments",
+            "inc-12"
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog",
+            "incident-record"
+          ],
+          "owner": {
+            "id": "money",
+            "name": "Money",
+            "source_id": "catalog"
+          },
+          "supported": true
+        }
+      ],
+      "missing_checks": [],
+      "memory": [
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "retry-increase",
+          "technique": "Increase retries",
+          "observed_outcome": "Overload worsened",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        },
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "timeout-fix",
+          "technique": "Timeout/circuit-breaker procedure",
+          "observed_outcome": "Recovery observed under historical conditions",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        }
+      ],
+      "sources": {
+        "catalog": {
+          "text": "Synthetic catalog: Checkout depends on Payments; Payments on Ledger. Web and Mobile consume Checkout. Commerce owns Checkout/Web/Mobile; Money owns Payments/Ledger; Platform owns Notifications.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "655770d64dd18eb22bbd767dce39ff3a4d2701960d27ab5da190cb6b93e9e562"
+        },
+        "release-brief": {
+          "text": "Synthetic checkout-v2.4 changes retry policy. Requires current integration verification and no relevant open blocking incident.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "d5b26430c2b7987268dfd07bf1452dee1e9064c4431dd699e08422e9bebbaaf5"
+        },
+        "incident-record": {
+          "text": "Synthetic INC-12: Payments timeouts, open and designated release-blocking. Notifications has an unrelated open incident.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "6b09e08fabf5ed2aed0272d97f92b3f6fd3c66752c9fa3c81816f8aec82821e4"
+        },
+        "history-record": {
+          "text": "Synthetic HIST-07: increasing Payments retries worsened overload. A timeout/circuit-breaker procedure later accompanied recovery. These observations are not proof of causality or a guaranteed new fix.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "5ba0fcaec5b8ab96cd743a76c677884e0c136bc4c9d39cecb271c485bd4be94c"
+        },
+        "check-record": {
+          "text": "Synthetic integration verification for checkout-v2.4 passed. Its deliberately future expiry is fixture data, not a real CI test.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "f671f1402913e84de5c60ae855210a283e636266dd1b2b09711c3d2342ca1b5b"
+        }
+      },
+      "expires_at": 1893456000
+    },
+    "trace": [
+      {
+        "call_id": "call_4301419",
+        "tool": "read_history",
+        "arguments": {
+          "service_id": "payments"
+        },
+        "result": {
+          "attempts": [
+            {
+              "incident_id": "hist-07",
+              "service_id": "payments",
+              "attempt_id": "retry-increase",
+              "technique": "Increase retries",
+              "observed_outcome": "Overload worsened",
+              "source_id": "history-record"
+            },
+            {
+              "incident_id": "hist-07",
+              "service_id": "payments",
+              "attempt_id": "timeout-fix",
+              "technique": "Timeout/circuit-breaker procedure",
+              "observed_outcome": "Recovery observed under historical conditions",
+              "source_id": "history-record"
+            }
+          ]
+        }
+      },
+      {
+        "call_id": "call_4301420",
+        "tool": "read_source",
+        "arguments": {
+          "source_id": "incident-record"
+        },
+        "result": {
+          "source_id": "incident-record",
+          "text": "Synthetic INC-12: Payments timeouts, open and designated release-blocking. Notifications has an unrelated open incident.",
+          "version": 1,
+          "checksum": "6b09e08fabf5ed2aed0272d97f92b3f6fd3c66752c9fa3c81816f8aec82821e4"
+        }
+      },
+      {
+        "call_id": "call_4301421",
+        "tool": "read_source",
+        "arguments": {
+          "source_id": "history-record"
+        },
+        "result": {
+          "source_id": "history-record",
+          "text": "Synthetic HIST-07: increasing Payments retries worsened overload. A timeout/circuit-breaker procedure later accompanied recovery. These observations are not proof of causality or a guaranteed new fix.",
+          "version": 1,
+          "checksum": "5ba0fcaec5b8ab96cd743a76c677884e0c136bc4c9d39cecb271c485bd4be94c"
+        }
+      },
+      {
+        "call_id": "call_3139085",
+        "tool": "read_history",
+        "arguments": {
+          "service_id": "checkout"
+        },
+        "result": {
+          "attempts": []
+        }
+      },
+      {
+        "call_id": "call_3139086",
+        "tool": "read_history",
+        "arguments": {
+          "service_id": "ledger"
+        },
+        "result": {
+          "attempts": []
+        }
+      }
+    ],
+    "model_turns": [
+      {
+        "role": "investigator",
+        "elapsed_ms": 8525.49968400001,
+        "usage": {
+          "total_tokens": 1325,
+          "total_input_tokens": 868,
+          "total_output_tokens": 58,
+          "total_thought_tokens": 399
+        }
+      },
+      {
+        "role": "investigator",
+        "elapsed_ms": 6739.498956000034,
+        "usage": {
+          "total_tokens": 906,
+          "total_input_tokens": 849,
+          "total_output_tokens": 36,
+          "total_thought_tokens": 21
+        }
+      },
+      {
+        "role": "investigator",
+        "elapsed_ms": 16481.426810000015,
+        "usage": {
+          "total_tokens": 2589,
+          "total_input_tokens": 861,
+          "total_output_tokens": 84,
+          "total_thought_tokens": 1644
+        }
+      },
+      {
+        "role": "verifier",
+        "elapsed_ms": 20124.03816699998,
+        "usage": {
+          "total_tokens": 3200,
+          "total_input_tokens": 1218,
+          "total_output_tokens": 20,
+          "total_thought_tokens": 1962
+        }
+      }
+    ],
+    "model_calls": 4,
+    "tool_calls": 7,
+    "timing": {
+      "model_ms": 51870.62551699989,
+      "wall_ms": 52378.295024000065,
+      "graph_client_ms": 246.59440200059635,
+      "graph_server_ms": 19.7092,
+      "query_count": 112,
+      "other_application_ms": 261.07510499957425,
+      "scope": "this invocation, excluding final checkpoint and freshness read; model_ms cumulative"
+    },
+    "synthetic": true,
+    "cursor": {
+      "input": [
+        {
+          "type": "function_result",
+          "name": "read_history",
+          "call_id": "call_3139085",
+          "result": [
+            {
+              "type": "text",
+              "text": "{\"attempts\": []}"
+            }
+          ]
+        },
+        {
+          "type": "function_result",
+          "name": "read_history",
+          "call_id": "call_3139086",
+          "result": [
+            {
+              "type": "text",
+              "text": "{\"attempts\": []}"
+            }
+          ]
+        }
+      ],
+      "previous": "v1_Chd2XzNTYXBDTktwcXdnOFVQdWFTUWdBdxIXeVAzU2FyRGNQS201NC1FUGdZX3J3UXM",
+      "index": 2
+    },
+    "saved_investigator_turn": {
+      "id": "v1_Chd2XzNTYXBDTktwcXdnOFVQdWFTUWdBdxIXel8zU2FweThMUC1qanVNUGpOYVFxQWc",
+      "status": "requires_action",
+      "calls": [
+        {
+          "id": "call_2133572",
+          "name": "submit_findings",
+          "arguments": {
+            "blocker_ids": [
+              "inc-12"
+            ],
+            "avoid_attempt_ids": [
+              "retry-increase"
+            ],
+            "review_attempt_ids": [
+              "timeout-fix"
+            ],
+            "next_step": "review_historical_procedure",
+            "source_ids": [
+              "catalog",
+              "history-record",
+              "incident-record",
+              "release-brief"
+            ]
+          }
+        }
+      ],
+      "text": "",
+      "elapsed_ms": 16481.426810000015,
+      "usage": {
+        "total_tokens": 2589,
+        "total_input_tokens": 861,
+        "total_output_tokens": 84,
+        "total_thought_tokens": 1644
+      }
+    },
+    "proposal": {
+      "blocker_ids": [
+        "inc-12"
+      ],
+      "avoid_attempt_ids": [
+        "retry-increase"
+      ],
+      "review_attempt_ids": [
+        "timeout-fix"
+      ],
+      "source_ids": [
+        "catalog",
+        "history-record",
+        "incident-record",
+        "release-brief"
+      ],
+      "next_step": "review_historical_procedure"
+    },
+    "verification_issues": [],
+    "saved_verifier_turn": {
+      "id": "v1_ChczXzNTYW96RUw2NmxnOFVQbDh5bXFBZxIXM18zU2FvekVMNjZsZzhVUGw4eW1xQWc",
+      "status": "requires_action",
+      "calls": [
+        {
+          "id": "call_2064134",
+          "name": "submit_review",
+          "arguments": {
+            "accept": true,
+            "reason": "supported"
+          }
+        }
+      ],
+      "text": "",
+      "elapsed_ms": 20124.03816699998,
+      "usage": {
+        "total_tokens": 3200,
+        "total_input_tokens": 1218,
+        "total_output_tokens": 20,
+        "total_thought_tokens": 1962
+      }
+    },
+    "review": {
+      "accept": true,
+      "reason": "supported"
+    },
+    "assessment": {
+      "id": "4f3c97a62bc8f85942a2e87f353c627b5c19cf67c02a5384ac64f1f66280a26b",
+      "release_id": "checkout-v2.4",
+      "verdict": "Blocked",
+      "mode": "deterministic-core",
+      "agent_run": "not configured",
+      "synthetic": true,
+      "generation": "e7c8a0e3-7c3c-4e79-9f07-937e7d2cdf36",
+      "revision": 2,
+      "policy_version": "release-policy-v1",
+      "assessed_at": 1792212465,
+      "task_ids": [
+        "blocker-af48e17109c4c62fb80f5467a40d536675f4d17b52b9c1e5515e17daa7600afd"
+      ],
+      "paths": [
+        {
+          "service_id": "checkout",
+          "path": [
+            "checkout"
+          ],
+          "fact_ids": [],
+          "fact_versions": [],
+          "source_ids": [
+            "release-brief"
+          ]
+        },
+        {
+          "service_id": "payments",
+          "path": [
+            "checkout",
+            "payments"
+          ],
+          "fact_ids": [
+            "dep-checkout-payments"
+          ],
+          "fact_versions": [
+            1
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog"
+          ]
+        },
+        {
+          "service_id": "ledger",
+          "path": [
+            "checkout",
+            "payments",
+            "ledger"
+          ],
+          "fact_ids": [
+            "dep-checkout-payments",
+            "dep-payments-ledger"
+          ],
+          "fact_versions": [
+            1,
+            1
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog"
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "incident_id": "inc-12",
+          "summary": "Payments timeout incident",
+          "service_id": "payments",
+          "path": [
+            "checkout",
+            "payments",
+            "inc-12"
+          ],
+          "source_ids": [
+            "release-brief",
+            "catalog",
+            "incident-record"
+          ],
+          "owner": {
+            "id": "money",
+            "name": "Money",
+            "source_id": "catalog"
+          },
+          "supported": true
+        }
+      ],
+      "missing_checks": [],
+      "memory": [
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "retry-increase",
+          "technique": "Increase retries",
+          "observed_outcome": "Overload worsened",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        },
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "timeout-fix",
+          "technique": "Timeout/circuit-breaker procedure",
+          "observed_outcome": "Recovery observed under historical conditions",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        }
+      ],
+      "sources": {
+        "catalog": {
+          "text": "Synthetic catalog: Checkout depends on Payments; Payments on Ledger. Web and Mobile consume Checkout. Commerce owns Checkout/Web/Mobile; Money owns Payments/Ledger; Platform owns Notifications.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "655770d64dd18eb22bbd767dce39ff3a4d2701960d27ab5da190cb6b93e9e562"
+        },
+        "release-brief": {
+          "text": "Synthetic checkout-v2.4 changes retry policy. Requires current integration verification and no relevant open blocking incident.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "d5b26430c2b7987268dfd07bf1452dee1e9064c4431dd699e08422e9bebbaaf5"
+        },
+        "incident-record": {
+          "text": "Synthetic INC-12: Payments timeouts, open and designated release-blocking. Notifications has an unrelated open incident.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "6b09e08fabf5ed2aed0272d97f92b3f6fd3c66752c9fa3c81816f8aec82821e4"
+        },
+        "history-record": {
+          "text": "Synthetic HIST-07: increasing Payments retries worsened overload. A timeout/circuit-breaker procedure later accompanied recovery. These observations are not proof of causality or a guaranteed new fix.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "5ba0fcaec5b8ab96cd743a76c677884e0c136bc4c9d39cecb271c485bd4be94c"
+        },
+        "check-record": {
+          "text": "Synthetic integration verification for checkout-v2.4 passed. Its deliberately future expiry is fixture data, not a real CI test.",
+          "synthetic": true,
+          "version": 1,
+          "checksum": "f671f1402913e84de5c60ae855210a283e636266dd1b2b09711c3d2342ca1b5b"
+        }
+      },
+      "expires_at": 1893456000,
+      "timing": {
+        "graph_client_ms": 79.71200100030273,
+        "graph_server_ms": 2.2496,
+        "query_count": 17,
+        "model_ms": null,
+        "scope": "investigation and actions, excluding assessment persistence/status read"
+      },
+      "effective_status": "Blocked",
+      "freshness_reason": null,
+      "current_revision": 2,
+      "checked_at": 1792212476,
+      "request_timing": {
+        "wall_ms": 84.47950100003254,
+        "graph_client_ms": 83.2425010003135,
+        "graph_server_ms": 2.5748,
+        "other_application_ms": 1.2369999997190462,
+        "model_ms": null
+      }
+    },
+    "actions_withheld": false,
+    "explanation": {
+      "avoid": [
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "retry-increase",
+          "technique": "Increase retries",
+          "observed_outcome": "Overload worsened",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        }
+      ],
+      "review": [
+        {
+          "incident_id": "hist-07",
+          "service_id": "payments",
+          "attempt_id": "timeout-fix",
+          "technique": "Timeout/circuit-breaker procedure",
+          "observed_outcome": "Recovery observed under historical conditions",
+          "source_id": "history-record",
+          "interpretation": "Historical outcome; present applicability requires verification"
+        }
+      ],
+      "next_step": "review_historical_procedure",
+      "qualification": "Historical observation; validate applicability before any production change."
+    },
+    "fresh": true
+  },
+  "tasks": [
+    [
+      "blocker-af48e17109c4c62fb80f5467a40d536675f4d17b52b9c1e5515e17daa7600afd",
+      "money",
+      "open"
+    ]
+  ]
+}

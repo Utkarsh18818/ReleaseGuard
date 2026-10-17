@@ -1,0 +1,14 @@
+[
+  {
+    "state": "Blocked",
+    "violations": []
+  },
+  {
+    "state": "Review outdated",
+    "violations": []
+  },
+  {
+    "state": "Needs evidence",
+    "violations": []
+  }
+]

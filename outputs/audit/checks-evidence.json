@@ -1,0 +1,12 @@
+{
+  "unauthenticated_ping_rejected": true,
+  "docker_version": "Docker version 29.9.0, build f415da8",
+  "compose_version": "Docker Compose version v5.6.0",
+  "configured_template_validation": "pass",
+  "configured_template_startup": "healthy",
+  "missing_password_template": "rejected as expected",
+  "application_build": "not available: no manifest or application",
+  "application_e2e": "not available: no application",
+  "graph_baseline_comparison": "not run: no fixture graph or application; pre-event boundary",
+  "app_persistence_and_tenant_isolation": "unverified"
+}

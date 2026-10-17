@@ -1,0 +1,24 @@
+# Explicit local database selection; no automatic cloud fallback.
+services:
+  api:
+    environment:
+      FALKORDB_TARGET: local
+      FALKORDB_HOST: falkordb
+      FALKORDB_PORT: 6379
+    networks: [default, graph]
+  worker:
+    environment:
+      FALKORDB_TARGET: local
+      FALKORDB_HOST: falkordb
+      FALKORDB_PORT: 6379
+    networks: [default, graph]
+  dispatcher:
+    environment:
+      FALKORDB_TARGET: local
+      FALKORDB_HOST: falkordb
+      FALKORDB_PORT: 6379
+    networks: [default, graph]
+networks:
+  graph:
+    external: true
+    name: releaseguard-local_default
