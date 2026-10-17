@@ -1,0 +1,14 @@
+.env
+.env.*
+.local
+.venv
+.git
+.codex
+.agents
+work
+outputs
+build
+.pytest_cache
+.ruff_cache
+**/__pycache__
+**/*.egg-info
